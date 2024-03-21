@@ -33,6 +33,16 @@ def get_coopland_info(coopland_link_base):
     
     return last_news_headline, last_news_description, last_news_picture_url, last_news_source_link
 
+def generate_post(headline,descriotipn,source_link):
+    post = (f"""\
+{headline} 
+{descriotipn}
+[▶▶▶Источник]({source_link})
+""")
+    return post
+
+
+
 #________________________________________________________________________________________________________
 if __name__ == "__main__":
 
@@ -47,16 +57,12 @@ if __name__ == "__main__":
     while True:
         coopland_headline, coopland_descriotipn, coopland_picture_url, coopland_source_link = get_coopland_info(coopland_link)
 
-        post = (f"""\
-{coopland_headline} 
-{coopland_descriotipn}
-[▶▶▶Источник]({coopland_source_link})
-""")
+        coopland_post = generate_post(headline = coopland_headline , descriotipn = coopland_descriotipn , source_link = coopland_link)
 
 #_______________________________________________________________
 
-        bot.send_photo(chat_id=telegram_chat_id, photo = coopland_picture_url , caption = post, parse_mode="Markdown")
-        time.sleep(300)
+        bot.send_photo(chat_id=telegram_chat_id, photo = coopland_picture_url , caption = coopland_post, parse_mode="Markdown")
+        time.sleep(10)
 
 
 
