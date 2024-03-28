@@ -54,16 +54,16 @@ if __name__ == "__main__":
 
     bot = telegram.Bot(token=telegram_bot_token)
 
+    last_post = ""
+
     while True:
         coopland_headline, coopland_descriotipn, coopland_picture_url, coopland_source_link = get_coopland_info(coopland_link)
 
         coopland_post = generate_post(headline = coopland_headline , descriotipn = coopland_descriotipn , source_link = coopland_link)
 
-#_______________________________________________________________
+        if coopland_post != last_post:
+            bot.send_photo(chat_id=telegram_chat_id, photo = coopland_picture_url , caption = coopland_post, parse_mode="Markdown")
+            last_post = coopland_post
 
-        bot.send_photo(chat_id=telegram_chat_id, photo = coopland_picture_url , caption = coopland_post, parse_mode="Markdown")
         time.sleep(10)
-
-
-
-
+#_______________________________________________________________
