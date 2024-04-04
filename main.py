@@ -18,7 +18,11 @@ from config import *
 
 def get_coopland_info(coopland_link_base):
 
-    response = requests.get(f"https://coop-land.ru/helpguides/new/")
+    headers = {
+     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+    }
+
+    response = requests.get(f"https://coop-land.ru/", headers=headers)
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, features="html.parser")
