@@ -11,6 +11,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
+from config import *
 #______________________________
 
 
@@ -42,7 +44,6 @@ def generate_post(headline,descriotipn,source_link):
     return post
 
 
-
 #________________________________________________________________________________________________________
 if __name__ == "__main__":
 
@@ -57,7 +58,7 @@ if __name__ == "__main__":
     while True:
         coopland_headline, coopland_descriotipn, coopland_picture_url, coopland_source_link = get_coopland_info(coopland_link)
 
-        coopland_post = generate_post(headline = coopland_headline , descriotipn = coopland_descriotipn , source_link = coopland_link)
+        coopland_post = generate_post(headline = coopland_headline , descriotipn = coopland_descriotipn , source_link = coopland_source_link)
 
         with open("coopland_last_headline.txt", "r", encoding="cp1251") as my_file:
             coopland_last_headline = my_file.read()
@@ -67,5 +68,5 @@ if __name__ == "__main__":
             with open("coopland_last_headline.txt", "w", encoding="cp1251") as my_file:
                 my_file.write(coopland_headline)
 
-        time.sleep(10)
+        time.sleep(DELAY)
 #_______________________________________________________________
