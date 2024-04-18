@@ -22,8 +22,14 @@ def get_coopland_info(coopland_link_base):
      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
     }
 
-    response = requests.get(f"https://coop-land.ru/", headers=headers)
-    response.raise_for_status()
+    while True:
+        try:
+            response = requests.get(f"https://coop-land.ru/", headers=headers)
+            response.raise_for_status()
+            break
+        except:
+            cprint("coopland site request error")
+            time.sleep(DELAY)
 
     soup = BeautifulSoup(response.text, features="html.parser")
 

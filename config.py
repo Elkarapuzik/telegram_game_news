@@ -1,1 +1,1 @@
-DELAY=10
+DELAY=60
