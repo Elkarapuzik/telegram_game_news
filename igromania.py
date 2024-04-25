@@ -15,7 +15,7 @@ load_dotenv()
 from config import *
 
 
-def get_igromania_info(igromania_link_base):
+def get_igromania_info(igromania_link_base, igromania_session):
 
     headers = {
      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
@@ -23,7 +23,7 @@ def get_igromania_info(igromania_link_base):
 
     while True:
         try:
-            response1 = requests.get(f"https://www.igromania.ru/igrovyie-novosti/", headers=headers)
+            response1 = igromania_session.get(f"https://www.igromania.ru/igrovyie-novosti/", headers=headers)
             response1.raise_for_status()
             break
         except:
@@ -40,7 +40,7 @@ def get_igromania_info(igromania_link_base):
     
     while True:
         try:
-            responce2 = requests.get(last_news_source_link)
+            responce2 = igromania_session.get(last_news_source_link)
             responce2.raise_for_status()
             break
         except:
@@ -67,6 +67,8 @@ def generate_post(headline,source_link):
 
 if __name__ == "__main__":
 
+    igromania_session = requests.Session()
+
     igromania_link = 'https://www.igromania.ru'
     
 
@@ -76,7 +78,7 @@ if __name__ == "__main__":
     bot = telegram.Bot(token=telegram_bot_token)
 
     while True:
-        igromania_headline, igromania_picture_url, igromania_source_link = get_igromania_info(igromania_link)
+        igromania_headline, igromania_picture_url, igromania_source_link = get_igromania_info(igromania_link, igromania_session)
 
         igromania_post = generate_post(headline = igromania_headline , source_link = igromania_source_link)
 

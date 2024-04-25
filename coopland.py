@@ -16,7 +16,8 @@ from config import *
 #______________________________
 
 
-def get_coopland_info(coopland_link_base):
+
+def get_coopland_info(coopland_link_base, coopland_session):
 
     headers = {
      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
@@ -24,11 +25,11 @@ def get_coopland_info(coopland_link_base):
 
     while True:
         try:
-            response = requests.get(f"https://coop-land.ru/", headers=headers)
+            response = coopland_session.get(f"https://coop-land.ru/", headers=headers)
             response.raise_for_status()
             break
         except:
-            cprint("coopland site request error")
+            cprint("coopland site request error", 'red')
             time.sleep(DELAY)
 
     soup = BeautifulSoup(response.text, features="html.parser")
@@ -57,6 +58,7 @@ def generate_post(headline,descriotipn,source_link):
 #________________________________________________________________________________________________________
 if __name__ == "__main__":
 
+    coopland_session = requests.Session()
 
     coopland_link = 'https://coop-land.ru'
 
@@ -66,7 +68,7 @@ if __name__ == "__main__":
     bot = telegram.Bot(token=telegram_bot_token)
 
     while True:
-        coopland_headline, coopland_descriotipn, coopland_picture_url, coopland_source_link = get_coopland_info(coopland_link)
+        coopland_headline, coopland_descriotipn, coopland_picture_url, coopland_source_link = get_coopland_info(coopland_link, coopland_session)
 
         coopland_post = generate_post(headline = coopland_headline , descriotipn = coopland_descriotipn , source_link = coopland_source_link)
 
