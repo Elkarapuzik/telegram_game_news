@@ -1,13 +1,12 @@
 from pprint import pprint
 import time
-
+import os
 #______________________________
 
 import requests
 from termcolor import cprint
 from bs4 import BeautifulSoup
 import telegram
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
