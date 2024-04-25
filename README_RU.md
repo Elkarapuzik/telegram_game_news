@@ -1,5 +1,9 @@
 # Телеграм бот по игровым новостям
 - Это программа которая автоматически присылает фотки и сообщения в телеграм используя базу данных coopland и igromania
+<p align="center">
+<img src="https://github.com/Elkarapuzik/telegram_game_news/blob/main/img/example.PNG" style="width:30%"/>
+<img src="https://github.com/Elkarapuzik/telegram_game_news/blob/main/img/example228.PNG" style="width:30%"/>
+</p>
 ## Как установить
 - Скачайте репозиторий с гит хаба:
 
