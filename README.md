@@ -1,5 +1,9 @@
 # Telegram bot for gaming news
 - This is a program that automatically sends pictures and messages to Telegram using the database coopland and igromania
+<p align="center">
+<img src="https://github.com/Elkarapuzik/telegram_game_news/blob/main/img/example.PNG" style="width:30%"/>
+<img src="https://github.com/Elkarapuzik/telegram_game_news/blob/main/img/example228.PNG" style="width:30%"/>
+</p>
 ## How to install
 - Download the repository from the git hub:
 
